@@ -1,0 +1,131 @@
+|Router-0 Configurations|
+
+ip route 11.0.0.0 255.255.255.252 12.0.0.2 
+ip route 13.0.0.0 255.255.255.252 12.0.0.2 
+ip route 192.168.12.0 255.255.255.0 12.0.0.2 
+ip route 192.168.14.0 255.255.255.0 12.0.0.2
+
+interface FastEthernet0/0
+ ip address 192.168.20.1 255.255.255.0
+no shutdown
+exit
+
+interface Serial0/2/0
+ ip address 12.0.0.1 255.255.255.252
+no shutdown
+exit
+
+............................................................................................
+
+|Router-1 Configurations|
+
+ip dhcp excluded-address 192.168.12.1 192.168.12.10
+
+ip dhcp pool Phone
+ network 192.168.12.0 255.255.255.0
+ default-router 192.168.12.1
+ option 150 ip 192.168.12.1
+exit
+
+ip route 12.0.0.0 255.255.255.252 11.0.0.2 
+ip route 13.0.0.0 255.255.255.252 11.0.0.2 
+ip route 192.168.14.0 255.255.255.0 11.0.0.2 
+ip route 192.168.20.0 255.255.255.0 11.0.0.2
+
+
+interface FastEthernet0/0
+ ip address 192.168.12.1 255.255.255.0
+no shutdown
+exit
+
+interface Serial0/0/0
+ ip address 11.0.0.1 255.255.255.252
+no shutdown
+exit
+
+telephony-service
+max-ephones 5
+max-dn 5 
+ip source-address 192.168.12.1 port 2000
+auto assign 1 to 5
+exit
+
+ephone-dn 1
+number 54004
+exit
+
+ephone-dn 2
+number 54003
+exit
+
+............................................................................................
+|Router-2 Configurations|
+
+ip dhcp excluded-address 192.168.14.1 192.168.14.10
+
+ip dhcp pool Phone
+ network 192.168.14.0 255.255.255.0
+ default-router 192.168.14.1
+ option 150 ip 192.168.14.1
+exit
+
+interface FastEthernet0/0
+ ip address 192.168.14.1 255.255.255.0
+no shutdown
+exit
+
+interface Serial0/1/0
+ ip address 13.0.0.1 255.255.255.252
+no shutdown
+exit
+
+ip route 11.0.0.0 255.255.255.252 13.0.0.2 
+ip route 12.0.0.0 255.255.255.252 13.0.0.2 
+ip route 192.168.12.0 255.255.255.0 13.0.0.2 
+ip route 192.168.20.0 255.255.255.0 13.0.0.2
+
+
+telephony-service
+max-ephones 5
+max-dn 5 
+ip source-address 192.168.14.1 port 2000
+auto assign 1 to 5
+exit
+
+ephone-dn 1
+number 54005
+exit
+
+ephone-dn 2
+number 54006
+exit
+
+............................................................................................
+|Router-7 Configurations|
+
+interface Serial0/0/0
+ ip address 11.0.0.2 255.255.255.252
+no shutdown
+exit
+
+interface Serial0/1/0
+ ip address 13.0.0.2 255.255.255.252
+no shutdown
+exit
+
+interface Serial0/2/0
+ ip address 12.0.0.2 255.255.255.252
+no shutdown
+exit
+
+
+ip route 192.168.12.0 255.255.255.0 11.0.0.1 
+ip route 192.168.14.0 255.255.255.0 13.0.0.1 
+ip route 192.168.20.0 255.255.255.0 12.0.0.1 
+
+
+
+............................................................
+
+
+

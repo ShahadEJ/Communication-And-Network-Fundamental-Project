@@ -1,0 +1,156 @@
+Administration Department
+
+Server-Pt (DHCP server):
+Ip address:192.168.14.11
+Subnet mask:255.255.255.0
+Defualt gatway:192.168.14.1
+
+
+Labtop-Pt (Head Of TheAdministration Deparmant):
+Ip address:192.168.14.9
+Subnet mask:255.255.255.0
+Defualt gatway:192.168.14.1
+
+
+Labtop-Pt (Secrtary):
+Ip address:192.168.14.10
+Subnet mask:255.255.255.0
+Defualt gatway:192.168.14.1
+
+
+the configraution of the ip telephones in router:
+
+Router2>enable
+Router2#configure terminal
+Router2(config)#interface FastEthernet0/0
+Router2(config-if)#ip address 192.168.14.1 255.255.255.0
+ Router2(config-if)#no shutdown
+Router2(config)#ip dhcp pool Phone
+Router2(dhcp-config) #network 192.168.14.0 255.255.255.0 
+Router2(dhcp-config)#default-router 192.168.14.1
+Router2(config)#telephony-service 
+outer2(config-telephony)#max-dn 5 
+ Router2(config-telephony)#max-ephones 5 
+ Router2(config-telephony)#ip source-address 192.168.14.1 port 2000 
+Router2(config-telephony)#auto assign 1 to 5 
+Router2(config-telephony)#exit
+Router2(config)#ephone-dn 1
+Router2(config-ephone-dn)#number 54005
+Router2(config)#ephone-dn 2  
+RouterA(config-ephone-dn)#number 54006
+
+the configraution of the ip telephones in switch:
+Switch1(config)#interface range fa0/1 – 24 
+ Switch1(config-if-range)#switchport mode access
+Switch1(config-if-range)#switchport voice vlan 1 
+
+
+
+-----------------------------------------------------
+Human resource department
+
+
+Labtop-Pt (Head Of The Hr Deparmant):
+Ip address:192.168.12.2
+Subnet mask:255.255.255.0
+Defualt gatway:192.168.12.1
+
+
+Labtop-Pt (Employer-2):
+Ip address:192.168.12.4
+Subnet mask:255.255.255.0
+Defualt gatway:192.168.12.1
+
+Pc-PT (Employer-1):
+Ip address:192.168.12.3
+Subnet mask:255.255.255.0
+Defualt gatway:192.168.12.1
+
+Printer-PT(printer0):
+Ip address:192.168.12.5
+Subnet mask:255.255.255.0
+Defualt gatway:192.168.12.1
+
+
+the configraution of the ip telephones in router:
+
+Router1>enable
+Router1#configure terminal
+Router1(config)#interface FastEthernet0/0
+Router1(config-if)#ip address 192.168.12.1 255.255.255.0
+ Router1(config-if)#no shutdown
+Router1(config)#ip dhcp pool Phone
+Router1(dhcp-config) #network 192.168.12.0 255.255.255.0 
+Router1(dhcp-config)#default-router 192.168.12.1
+Router1(config)#telephony-service 
+outer1(config-telephony)#max-dn 5 
+ Router1(config-telephony)#max-ephones 5 
+ Router1(config-telephony)#ip source-address 192.168.12.1 port 2000 
+Router1(config-telephony)#auto assign 1 to 5 
+Router1(config-telephony)#exit
+Router1(config)#ephone-dn 1
+Router1(config-ephone-dn)#number 54003
+Router1(config)#ephone-dn 2  
+Router1(config-ephone-dn)#number 54003
+
+the configraution of the ip telephones in switch:
+
+Switch0(config)#interface range fa0/1 – 24 
+ Switch0(config-if-range)#switchport mode access
+Switch0(config-if-range)#switchport voice vlan 1 
+
+
+Service password in switch:
+
+
+Switch>enable
+Switch#conf t
+Switch#conf terminal
+Enter configuration commands, one per line. End with CNTL/Z .
+
+Switch(config)#Service pass
+Switch(config)#Service password-encryption
+Switch(config)#enable secret cisco
+Switch(config) #
+Switch(config-line)#end
+
+-------------------------------------
+
+Finance depatment
+
+Pc-PT (assistance):
+Ip address:192.168.20.3
+Subnet mask:255.255.255.0
+Defualt gatway:192.168.20.1
+
+Pc-PT (Head Of The Finance Department)
+Ip address:192.168.20.2
+Subnet mask:255.255.255.0
+Defualt gatway:192.168.20.1
+
+
+
+Pc-PT (Empolyer)
+Ip address:192.168.20.4
+Subnet mask:255.255.255.0
+Defualt gatway:192.168.20.1
+
+Printer-PT(printer1)
+
+Ip address:192.168.20.5
+Subnet mask:255.255.255.0
+Defualt gatway:192.168.20.1
+
+
+Service password in switch:
+
+Switch>enable
+Switch#conf t
+Switch#conf terminal
+Enter configuration commands, one per line. End with CNTL/Z .
+
+Switch(config)#Service pass
+Switch(config)#Service password-encryption
+Switch(config)#enable secret cisco
+Switch(config) #
+Switch(config-line)#end
